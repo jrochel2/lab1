@@ -21,11 +21,6 @@ data <- import(here("Data", "rstats_tweets.rds"),
 ```
 
 ```{r, commit 2}
-```{r ST_plotdata}
-pd1 <- data %>% 
-  mutate(month = lubridate::round_date(created_at, "months")) %>% 
-  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) 
-
 pd<- data %>%
   count(screen_name) %>%
   arrange(desc(n)) %>%
@@ -36,9 +31,12 @@ pd<- data %>%
 ggplot(pd, aes(x = screen_name, y = n)) +
   geom_col() +
   coord_flip()
-
 ```
 
+```{r ST_plotdata}
+pd1 <- data %>% 
+  mutate(month = lubridate::round_date(created_at, "months")) %>% 
+  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) 
 
 pd2 <- pd1 %>% 
   count(month)
