@@ -9,13 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r load_libraries}
 library(tidyverse)
 library(rio)
 library(here)
 ```
 
-```{r}
+```{r import_data}
 data <- import(here("Data", "rstats_tweets.rds"),
                setclass = "tbl_df")
 ```
@@ -31,22 +31,6 @@ pd<- data %>%
 ggplot(pd, aes(x = screen_name, y = n)) +
   geom_col() +
   coord_flip()
-```
-
-
-```{r ST_plotdata}
-pd1 <- data %>% 
-  mutate(month = lubridate::round_date(created_at, "months")) %>% 
-  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) 
-
-pd2 <- pd1 %>% 
-  count(month)
-```
-
-```{r ST_plot}
-ggplot(pd2, aes(x = month, y = n)) +
-  geom_smooth() +
-  geom_line()
 ```
 
 ```{r, commit 3, fig.width = 10, fig.height = 10}
@@ -67,6 +51,22 @@ ggplot(pd, aes(x = screen_name, y = n), size = "20") +
        x = "Twitter Screen Name",
        caption = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
+
+```{r ST_plotdata}
+pd1 <- data %>% 
+  mutate(month = lubridate::round_date(created_at, "months")) %>% 
+  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) 
+
+pd2 <- pd1 %>% 
+  count(month)
+```
+
+```{r commit4}
+ggplot(pd2, aes(x = month, y = n)) +
+  geom_smooth() +
+  geom_line()
+```
+
 ```{r, commit 5, fig.width = 10, fig.height= 10 }
 ggplot(pd2, aes(x = month, y = n)) +
   geom_smooth(se = FALSE, color = "magenta", size = 2) +
