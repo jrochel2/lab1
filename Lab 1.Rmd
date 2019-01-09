@@ -48,3 +48,21 @@ ggplot(pd2, aes(x = month, y = n)) +
   geom_line()
 ```
 
+```{r, commit 3, fig.width = 10, fig.height = 10}
+pd<- data %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  dplyr::slice(1:25) %>%
+  mutate(screen_name = factor(screen_name), 
+         screen_name = forcats::fct_reorder(screen_name, n))
+
+ggplot(pd, aes(x = screen_name, y = n), size = "huge") +
+  geom_col(fill = "cornflowerblue", alpha = .75) +
+  coord_flip() +
+  theme_minimal(base_size = 20) +
+  labs(title = "Most prolific #rstats tweeters",
+       subtitle = "Top 25 screen names displayed",
+       y = "Count",
+       x = "Twitter Screen Name",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday")
+```
