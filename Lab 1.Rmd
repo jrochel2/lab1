@@ -67,8 +67,7 @@ ggplot(pd, aes(x = screen_name, y = n), size = "20") +
        x = "Twitter Screen Name",
        caption = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
-
-```{r, COMMIT 5, fig.width = 10, fig.height = 10}
+```{r, commit 5, fig.width = 10, fig.height= 10 }
 ggplot(pd2, aes(x = month, y = n)) +
   geom_smooth(se = FALSE, color = "magenta", size = 2) +
   geom_line(color = "gray40", size = 2) +
@@ -78,6 +77,3 @@ ggplot(pd2, aes(x = month, y = n)) +
        y = "Number of #rstats tweets",
        x = "Year (data summarized by month)",
        caption = "Data from Mike Kearny, distributed via #tidytuesday")
-
-```
-
