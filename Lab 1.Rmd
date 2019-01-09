@@ -1,6 +1,6 @@
 ---
 title: "Lab One"
-author: "Jonathan Rochelle"
+author: "Jonathan Rochelle, Shaina Trevino"
 date: "1/9/2019"
 output: html_document
 ---
@@ -16,6 +16,22 @@ library(here)
 ```
 
 ```{r}
-data <- import(here("Data", "rstats_tweets.rds"))
+data <- import(here("Data", "rstats_tweets.rds"),
+               setclass = "tbl_df")
+```
+
+```{r ST_plotdata}
+pd1 <- data %>% 
+  mutate(month = lubridate::round_date(created_at, "months")) %>% 
+  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) 
+
+pd2 <- pd1 %>% 
+  count(month)
+```
+
+```{r ST_plot}
+ggplot(pd2, aes(x = month, y = n)) +
+  geom_smooth() +
+  geom_line()
 ```
 
