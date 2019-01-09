@@ -32,6 +32,7 @@ ggplot(pd, aes(x = screen_name, y = n)) +
   geom_col() +
   coord_flip()
 ```
+
 ```{r, fig.width = 10, fig.height = 10}
 ggplot(pd, aes(x = screen_name, y = n)) +
   geom_col(fill = "cornflowerblue", alpha = 0.7) +
