@@ -1,0 +1,21 @@
+---
+title: "Lab One"
+author: "Jonathan Rochelle"
+date: "1/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(rio)
+library(here)
+```
+
+```{r}
+data <- import(here("Data", "rstats_tweets.rds"))
+```
+
