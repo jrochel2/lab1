@@ -32,6 +32,18 @@ ggplot(pd, aes(x = screen_name, y = n)) +
   geom_col() +
   coord_flip()
 ```
+```{r, fig.width = 10, fig.height = 10}
+ggplot(pd, aes(x = screen_name, y = n)) +
+  geom_col(fill = "cornflowerblue", alpha = 0.7) +
+  labs(title = "Most prolific #rstats tweeters",
+       subtitle = "Top 25 screen names displayed",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday",
+       x = "Twitter Screen Names",
+       y = "Count") +
+  coord_flip() +
+  theme_minimal(base_size = 15)
+```
+
 
 ```{r ST_plotdata}
 pd1 <- data %>% 
