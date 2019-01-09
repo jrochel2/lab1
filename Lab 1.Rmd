@@ -67,3 +67,17 @@ ggplot(pd, aes(x = screen_name, y = n), size = "20") +
        x = "Twitter Screen Name",
        caption = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
+
+```{r, commit 5, fig.width = 10, fig.height= 10 }
+ggplot(pd2, aes(x = month, y = n)) +
+  geom_smooth(se = FALSE, color = "magenta", size = 2) +
+  geom_line(size = 2, color = "gray40") + 
+  geom_area(fill = "cornflowerblue", alpha = 0.3) +
+  theme_minimal(base_size = 20) +
+    labs(title = "Growth of the #rstats hashtag on twitter over time",
+       y = "Number of #stats tweets",
+       x = "Year (data summarized by month",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday")
+  
+```
+
