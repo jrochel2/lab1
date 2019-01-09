@@ -1,6 +1,6 @@
 ---
 title: "Lab One"
-author: "Jonathan Rochelle"
+author: "Jonathan Rochelle, Alejandra Garcia Isaza, "
 date: "1/9/2019"
 output: html_document
 ---
@@ -17,5 +17,21 @@ library(here)
 
 ```{r}
 data <- import(here("Data", "rstats_tweets.rds"))
+data
+```
+
+```{r, commit 2}
+
+pd<- data %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  dplyr::slice(1:25) %>%
+  mutate(screen_name = factor(screen_name), 
+         screen_name = forcats::fct_reorder(screen_name, n))
+
+ggplot(pd, aes(x = screen_name, y = n)) +
+  geom_col() +
+  coord_flip()
+
 ```
 
